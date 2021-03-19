@@ -5,3 +5,5 @@ import models
 admin.site.register(models.TextLanguage)
 admin.site.register(models.Text)
 admin.site.register(models.TtsTest)
+admin.site.register(models.TtsTestResult)
+
