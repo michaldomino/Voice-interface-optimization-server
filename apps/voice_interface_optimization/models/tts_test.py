@@ -1,6 +1,6 @@
 from django.db import models
 
-from apps.voice_interface_optimization.models import Text
+from .text import Text
 
 
 class TtsTest(models.Model):

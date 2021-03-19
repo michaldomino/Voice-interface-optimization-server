@@ -1,6 +1,6 @@
 from django.db import models
 
-from apps.voice_interface_optimization.models import TextLanguage
+from .text_language import TextLanguage
 
 
 class Text(models.Model):
