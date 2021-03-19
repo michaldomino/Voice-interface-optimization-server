@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     
     'api',
+    'apps.authentication',
+    'apps.users',
 ]
 
 MIDDLEWARE = [
@@ -121,7 +123,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-AUTH_USER_MODEL = 'apps.users.CustomUser'
+AUTH_USER_MODEL = 'users.CustomUser'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
