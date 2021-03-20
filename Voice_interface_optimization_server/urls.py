@@ -20,5 +20,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('authentication/', include('apps.authentication.urls')),
     path('tts_tests/', include('apps.tts_tests.urls')),
-    path('api/', include('api.urls'))
 ]
