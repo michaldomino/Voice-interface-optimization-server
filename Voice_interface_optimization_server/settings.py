@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'api',
     'apps.authentication',
     'apps.users',
+    'apps.texts',
+    'apps.tts_tests',
 ]
 
 MIDDLEWARE = [

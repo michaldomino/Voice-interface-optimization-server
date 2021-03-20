@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from apps.voice_interface_optimization.models import TtsTest
+from apps.tts_tests.models import TtsTest
 
 
 class TtsTestSerializer(serializers.ModelSerializer):
