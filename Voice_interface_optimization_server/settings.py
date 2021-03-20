@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'apps.users',
     'apps.texts',
     'apps.tts_tests',
+    'apps.stt_tests',
 ]
 
 MIDDLEWARE = [
