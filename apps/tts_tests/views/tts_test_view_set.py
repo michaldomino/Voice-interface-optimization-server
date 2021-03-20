@@ -6,7 +6,6 @@ from apps.users.permissions import IsVerified
 
 
 class TtsTestViewSet(viewsets.ReadOnlyModelViewSet):
-
     queryset = TtsTest.objects.all()
     serializer_class = TtsTestSerializer
     permission_classes = [IsVerified]
