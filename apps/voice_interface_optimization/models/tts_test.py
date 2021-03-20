@@ -1,6 +1,6 @@
 from django.db import models
 
-from .text import Text
+from apps.texts.models import Text
 
 
 class TtsTest(models.Model):
