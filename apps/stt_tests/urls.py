@@ -1,7 +1,12 @@
-from django.urls import path
+from django.urls import path, include
 
-from apps.stt_tests.views.stt_test_view_set import SttTestViewSet
+from rest_framework.routers import DefaultRouter
+from apps.stt_tests import views
+
+router = DefaultRouter()
+router.register(r'stt_tests', views.SttTestViewSet)
+router.register(r'stt_test_results', views.CreateSttTestResultViewSet)
 
 urlpatterns = [
-    path('api/stt_test', SttTestViewSet.as_view({'get': 'list'})),
+    path('api/', include(router.urls)),
 ]
