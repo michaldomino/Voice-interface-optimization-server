@@ -1,7 +1,12 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 
-from apps.tts_tests.views import TtsTestViewSet
+from apps.tts_tests import views
+
+router = DefaultRouter()
+router.register(r'tts_tests', viewset=views.TtsTestViewSet)
+router.register(r'tts_tests_results', viewset=views.CreateTtsTestResultViewSet)
 
 urlpatterns = [
-    path('api/tts_test', TtsTestViewSet.as_view({'get': 'list'})),
+    path('api/', include(router.urls)),
 ]
