@@ -1,0 +1,1 @@
+web: gunicorn Voice_interface_optimization_server.wsgi
