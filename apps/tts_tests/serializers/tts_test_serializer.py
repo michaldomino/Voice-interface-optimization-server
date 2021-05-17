@@ -4,7 +4,10 @@ from apps.tts_tests.models import TtsTest
 
 
 class TtsTestSerializer(serializers.ModelSerializer):
-
+    text = serializers.SlugRelatedField(
+        read_only=True,
+        slug_field='text'
+    )
     class Meta:
         model = TtsTest
         fields = '__all__'
