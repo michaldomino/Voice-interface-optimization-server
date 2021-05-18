@@ -8,6 +8,9 @@ class SttTestSerializer(serializers.ModelSerializer):
         read_only=True,
         slug_field='text'
     )
+    language = serializers.CharField(
+        source='text.language.code'
+    )
 
     class Meta:
         model = SttTest
