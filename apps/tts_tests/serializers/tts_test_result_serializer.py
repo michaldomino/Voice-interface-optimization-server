@@ -4,7 +4,11 @@ from apps.tts_tests.models import TtsTestResult
 
 
 class TtsTestResultSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(
+        default=serializers.CurrentUserDefault(),
+    )
 
     class Meta:
         model = TtsTestResult
         fields = '__all__'
+        # fields = ['tts_test', 'result']
