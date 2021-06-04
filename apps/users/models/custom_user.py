@@ -4,4 +4,4 @@ from django.db import models
 
 class CustomUser(AbstractUser):
 
-    verified = models.BooleanField(default=False)
+    is_verified = models.BooleanField(default=False)
