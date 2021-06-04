@@ -1,1 +1,2 @@
+from .is_verified_view import IsVerifiedSerializer
 from .register_user_serializer import RegisterUserSerializer
