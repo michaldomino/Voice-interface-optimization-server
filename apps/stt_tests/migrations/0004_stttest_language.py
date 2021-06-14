@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='stttest',
             name='language',
-            field=models.ForeignKey(default='', on_delete=django.db.models.deletion.RESTRICT, to='texts.textlanguage'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, to='texts.textlanguage'),
             preserve_default=False,
         )
     ]
