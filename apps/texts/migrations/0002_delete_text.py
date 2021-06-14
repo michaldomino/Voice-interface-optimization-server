@@ -7,6 +7,8 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('texts', '0001_initial'),
+        ('stt_tests', '0006_auto_20210614_2108'),
+        ('tts_tests', '0005_auto_20210614_2114'),
     ]
 
     operations = [
