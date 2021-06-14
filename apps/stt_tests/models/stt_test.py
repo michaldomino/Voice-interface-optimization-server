@@ -5,3 +5,6 @@ from apps.texts.models import Text
 
 class SttTest(models.Model):
     text = models.OneToOneField(Text, on_delete=models.RESTRICT)
+
+    def __str__(self):
+        return f'{self.text}'
