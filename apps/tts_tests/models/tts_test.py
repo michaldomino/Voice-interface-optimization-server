@@ -1,10 +1,12 @@
 from django.db import models
 
-from apps.texts.models import Text
+from apps.texts.models import Text, TextLanguage
 
 
 class TtsTest(models.Model):
     text = models.ForeignKey(Text, on_delete=models.RESTRICT)
+    language = models.ForeignKey(TextLanguage, on_delete=models.RESTRICT)
+    text2 = models.TextField()
     volume = models.FloatField()
     pitch = models.FloatField()
     rate = models.FloatField()
