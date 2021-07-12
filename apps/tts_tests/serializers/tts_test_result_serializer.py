@@ -11,4 +11,3 @@ class TtsTestResultSerializer(serializers.ModelSerializer):
     class Meta:
         model = TtsTestResult
         fields = '__all__'
-        # fields = ['tts_test', 'result']
