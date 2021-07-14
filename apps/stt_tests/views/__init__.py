@@ -1,2 +1,3 @@
 from .create_stt_test_result_view_set import CreateSttTestResultViewSet
+from .stt_test_result_xlsx_view_set import SttTestResultXlsxViewSet
 from .stt_test_view_set import SttTestViewSet
