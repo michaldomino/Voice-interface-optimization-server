@@ -9,10 +9,11 @@ class SttTestResultXlsxSerializer(serializers.ModelSerializer):
     words_count = serializers.SerializerMethodField()
     formatted_result = serializers.SerializerMethodField()
     edit_distance = serializers.SerializerMethodField()
+    similarity = serializers.SerializerMethodField()
 
     class Meta:
         model = SttTestResult
-        fields = ['language', 'text', 'words_count', 'result', 'formatted_result', 'edit_distance']
+        fields = ['language', 'text', 'words_count', 'result', 'formatted_result', 'edit_distance', 'similarity']
 
     def get_text(self, obj):
         return obj.stt_test.text.lower()
@@ -20,13 +21,19 @@ class SttTestResultXlsxSerializer(serializers.ModelSerializer):
     def get_words_count(self, obj):
         return len(obj.stt_test.text.split())
 
+    def get_formatted_result(self, obj):
+        return obj.result.lower()
+
     def get_edit_distance(self, obj):
         text = obj.stt_test.text.lower()
         result = obj.result.lower()
         return self._levenshtein(text, result)
 
-    def get_formatted_result(self, obj):
-        return obj.result.lower()
+    def get_similarity(self, obj):
+        text = obj.stt_test.text.lower()
+        result = obj.result.lower()
+        edit_distance = self._levenshtein(text, result)
+        return 1 - min(float(edit_distance) / float(len(text)), 1.0)
 
     @classmethod
     def _levenshtein(cls, s1, s2):
