@@ -6,6 +6,8 @@ from apps.stt_tests.models import SttTestResult
 class SttTestResultXlsxSerializer(serializers.ModelSerializer):
     language = serializers.CharField(source='stt_test.language.code')
     text = serializers.SerializerMethodField()
+    characters_count = serializers.SerializerMethodField()
+    characters_count_excluding_whitespace = serializers.SerializerMethodField()
     words_count = serializers.SerializerMethodField()
     formatted_result = serializers.SerializerMethodField()
     edit_distance = serializers.SerializerMethodField()
@@ -13,10 +15,19 @@ class SttTestResultXlsxSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SttTestResult
-        fields = ['language', 'text', 'words_count', 'result', 'formatted_result', 'edit_distance', 'similarity']
+        fields = ['language', 'text', 'characters_count', 'characters_count_excluding_whitespace', 'words_count',
+                  'result', 'formatted_result', 'edit_distance', 'similarity']
 
     def get_text(self, obj):
         return obj.stt_test.text.lower()
+
+    def get_characters_count(self, obj):
+        text = obj.stt_test.text
+        return len(text)
+
+    def get_characters_count_excluding_whitespace(self, obj):
+        text = obj.stt_test.text
+        return len(text) - text.count(' ')
 
     def get_words_count(self, obj):
         return len(obj.stt_test.text.split())
