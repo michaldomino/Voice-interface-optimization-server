@@ -9,13 +9,14 @@ class SttTestResultXlsxSerializer(serializers.ModelSerializer):
     characters_count = serializers.SerializerMethodField()
     characters_count_excluding_whitespace = serializers.SerializerMethodField()
     words_count = serializers.SerializerMethodField()
+    age = serializers.IntegerField(source='user.age')
     formatted_result = serializers.SerializerMethodField()
     edit_distance = serializers.SerializerMethodField()
     similarity = serializers.SerializerMethodField()
 
     class Meta:
         model = SttTestResult
-        fields = ['language', 'text', 'characters_count', 'characters_count_excluding_whitespace', 'words_count',
+        fields = ['language', 'text', 'characters_count', 'characters_count_excluding_whitespace', 'words_count', 'age',
                   'result', 'formatted_result', 'edit_distance', 'similarity']
 
     def get_text(self, obj):
