@@ -10,11 +10,12 @@ class TtsTestResultXlsxSerializer(serializers.ModelSerializer):
     pitch = serializers.FloatField(source='tts_test.pitch')
     rate = serializers.FloatField(source='tts_test.rate')
     words_count = serializers.SerializerMethodField()
+    age = serializers.IntegerField(source='user.age')
     formatted_result = serializers.SerializerMethodField()
 
     class Meta:
         model = TtsTestResult
-        fields = ['language', 'text', 'volume', 'pitch', 'rate', 'words_count', 'formatted_result']
+        fields = ['language', 'text', 'volume', 'pitch', 'rate', 'words_count', 'age', 'formatted_result']
 
     def get_words_count(self, obj):
         return len(obj.tts_test.text.split())

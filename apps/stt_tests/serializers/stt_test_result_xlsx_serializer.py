@@ -9,14 +9,16 @@ class SttTestResultXlsxSerializer(serializers.ModelSerializer):
     characters_count = serializers.SerializerMethodField()
     characters_count_excluding_whitespace = serializers.SerializerMethodField()
     words_count = serializers.SerializerMethodField()
+    age = serializers.IntegerField(source='user.age')
     formatted_result = serializers.SerializerMethodField()
     edit_distance = serializers.SerializerMethodField()
     similarity = serializers.SerializerMethodField()
+    difference = serializers.SerializerMethodField()
 
     class Meta:
         model = SttTestResult
-        fields = ['language', 'text', 'characters_count', 'characters_count_excluding_whitespace', 'words_count',
-                  'result', 'formatted_result', 'edit_distance', 'similarity']
+        fields = ['language', 'text', 'characters_count', 'characters_count_excluding_whitespace', 'words_count', 'age',
+                  'result', 'formatted_result', 'edit_distance', 'similarity', 'difference']
 
     def get_text(self, obj):
         return obj.stt_test.text.lower()
@@ -45,6 +47,12 @@ class SttTestResultXlsxSerializer(serializers.ModelSerializer):
         result = obj.result.lower()
         edit_distance = self._levenshtein(text, result)
         return 1 - min(float(edit_distance) / float(len(text)), 1.0)
+
+    def get_difference(self, obj):
+        text = obj.stt_test.text.lower()
+        result = obj.result.lower()
+        edit_distance = self._levenshtein(text, result)
+        return float(edit_distance) / float(len(text))
 
     @classmethod
     def _levenshtein(cls, s1, s2):

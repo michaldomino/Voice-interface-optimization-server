@@ -4,4 +4,5 @@ from django.db import models
 
 class CustomUser(AbstractUser):
 
+    age = models.IntegerField()
     is_verified = models.BooleanField(default=False)
